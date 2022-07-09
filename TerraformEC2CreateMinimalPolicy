@@ -1,0 +1,53 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "ec2:CreateTags",
+            "Resource": "arn:aws:ec2:ap-south-1:452958939641:instance/*",
+            "Condition": {
+                "StringEqualsIfExists": {
+                    "ec2:ImageID": "ami-08df646e18b182346",
+                    "ec2:InstanceType": "t2.micro"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:TerminateInstances",
+                "ec2:DescribeInstanceAttribute",
+                "ec2:RunInstances"
+            ],
+            "Resource": [
+                "arn:aws:ec2:ap-south-1:452958939641:subnet/*",
+                "arn:aws:ec2:ap-south-1:452958939641:network-interface/*",
+                "arn:aws:ec2:ap-south-1:452958939641:volume/*",
+                "arn:aws:ec2:ap-south-1::image/ami-08df646e18b182346",
+                "arn:aws:ec2:ap-south-1:452958939641:instance/*",
+                "arn:aws:ec2:ap-south-1:452958939641:security-group/*"
+            ],
+            "Condition": {
+                "StringEqualsIfExists": {
+                    "ec2:ImageID": "ami-08df646e18b182346",
+                    "ec2:InstanceType": "t2.micro",
+                    "ec2:VolumeType": "gp2"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:DescribeTags",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeInstanceCreditSpecifications"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
